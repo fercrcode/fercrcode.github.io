@@ -12,8 +12,8 @@ order: 4
 
 <iframe src="https://docs.google.com/gview?url=https://raw.githubusercontent.com/FerranC96/FerranC96.github.io/main/assets/PDFs/CV_FerranCardoso.pdf&embedded=true" style="width:600px; height:846px; max-width: 100%" frameborder="0"></iframe> 
 
-
-<!-- ## Curriculum vitae
+<!-- 
+## Curriculum vitae
 
 ### Brief CV
 
@@ -115,5 +115,5 @@ English teacher of kids between 6 and 12 years old. Also playing as a receptioni
 
 - Distinció de les PAU - Consell Interuniversitari de Catalunya (2014). Granted to those students that achieved a qualification of 9/10, or more, in the general phase of the University Access Tests (PAU).
 
-- Matrícula d'Honor en el Batxillerat - Institut Joan Miró (2014). -->
-
+- Matrícula d'Honor en el Batxillerat - Institut Joan Miró (2014).
+ -->

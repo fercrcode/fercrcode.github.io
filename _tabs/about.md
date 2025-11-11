@@ -22,7 +22,7 @@ impactful software solutions to empower researchers and colleagues.
 Check out the amazing things she's done as [Aquacletas here](https://aquacletas.github.io/)!
 
 
-## Bio
+## Biography
 
 With a background in molecular biotechnology, Ferran transitioned into computational 
 roles for his MSc in Bioinformatics at Imperial College London. 
