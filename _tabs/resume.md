@@ -25,7 +25,7 @@ order: 4
 
 ### Detailed Experience and Education
 
-<!-- - **Occupation:** Computational PhD Student
+- **Occupation:** Computational PhD Student
 - **Institution:** UCL's Cancer Institute
 - **Location:** London, England, United Kingdom
 - **Interests:** Cancer, plasticity, tumour micro-environment and genetic alterations
@@ -39,7 +39,7 @@ order: 4
   - PhD in Computational Biology at UCL Cancer Institute (Sep 2019 - Present)
   - MSc Project 3 - AnnoRE pipeline at Imperial College London (Jun 2019 - Sep 2019)
   - MSc Project 2 - scRNA-seq data analysis at Imperial College London (Apr 2019 - Jun 2019)
-  - MSc Project 1 - FBA app back-end at Imperial College London (Jan 2019 - Apr 2019) -->
+  - MSc Project 1 - FBA app back-end at Imperial College London (Jan 2019 - Apr 2019)
 
 
 #### PhD in Computational Biology
