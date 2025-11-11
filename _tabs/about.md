@@ -7,7 +7,7 @@ math: true
 toc: true
 ---
 
-![Desktop View](/assets/img/20250914_100957.png{: width="1000" height="750" style="max-width: 50%" .left}
+![Desktop View](/assets/img/20250914_100957.png){: width="1000" height="750" style="max-width: 50%" .left}
 
 Thank you for visiting my site!
 
