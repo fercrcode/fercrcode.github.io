@@ -7,9 +7,9 @@ math: true
 toc: true
 ---
 
-![Desktop View](/assets/img/20250914_100957.png){: width="1000" height="750" style="max-width: 50%" .left}
-
 Thank you for visiting my site!
+
+![Desktop View](/assets/img/20250914_100957.png){: width="1000" height="750" style="max-width: 50%" .left}
 
 I'm a computational Senior Scientific Officer at the Institute of Cancer Research 
 working at the interface of digital pathology, spatial multiomics, and clinical data.
