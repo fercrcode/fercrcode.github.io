@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://fercrcode.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fercrcode.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2025-11-12T20:43:29+00:00</updated><id>https://fercrcode.github.io/feed.xml</id><title type="html">Ferran Cardoso</title><subtitle>Ferran Cardoso`s personal profile, portfolio of academical publications, and other outputs.  Uses a minimal, responsive, and powerful Jekyll theme for presenting professional writing.</subtitle><entry><title type="html">ESMO AI &amp;amp; Digital Oncology Congress</title><link href="https://fercrcode.github.io/posts/ESMOAI/" rel="alternate" type="text/html" title="ESMO AI &amp;amp; Digital Oncology Congress" /><published>2025-11-10T00:00:00+00:00</published><updated>2025-11-12T20:42:55+00:00</updated><id>https://fercrcode.github.io/posts/ESMOAI</id><content type="html" xml:base="https://fercrcode.github.io/posts/ESMOAI/"><![CDATA[<p><img src="/assets/img/ESMOai_banner.png" alt="Desktop View" width="616" height="283" style="max-width: 300px" class="right" /></p>
+
+<p>At the first <a href="https://www.esmo.org/meeting-calendar/esmo-ai-and-digital-oncology-congress-2025">ESMO AI &amp; Digital Oncology Congress</a> in Berlin I am presenting two posters discussing our experiences building and using various computational platforms for multimodal analysis (including histopathology images!) in oncology.</p>
+
+<p>You can see the programme, abstracts and electronic copies of the posters on <a href="https://cslide.ctimeetingtech.com/coasis_21451/attendee/confcal_1/presentation">ESMO’s site</a>, or continue reading to see information on both below.</p>
+
+<p><img src="/assets/img/ESMOai25_welcome.jpeg" alt="Window shadow" class="shadow" width="4000" height="3000" style="max-width: 90%" /></p>
+
+<h2 id="in-house-and-commercial-platforms-for-integrated-discovery-and-diagnostics-in-pathology">In-house and Commercial Platforms for Integrated Discovery and Diagnostics in Pathology</h2>
+
+<blockquote class="prompt-info">
+  <p>A PDF copy of this poster’s abstract can be downloaded from <a href="/assets/PDFs/POPIDD_ESMO25.pdf">here</a>. If the view below doesn’t render upon reloading this page, you can also download the poster from <a href="/assets/PDFs/POPIDD_ESMO25_export.pdf">here</a>.</p>
+</blockquote>
+
+<iframe src="https://docs.google.com/gview?url=https://raw.githubusercontent.com/fercrcode/fercrcode.github.io/main/assets/PDFs/POPIDD_ESMO25_export.pdf&amp;embedded=true" style="width:800px; height:450px; max-width: 100%" frameborder="0"></iframe>
+
+<h2 id="developing-an-integrated-multimodal-platform-for-the-poetic-breast-cancer-trial">Developing an Integrated Multimodal Platform for the POETIC Breast Cancer Trial</h2>
+
+<blockquote class="prompt-info">
+  <p>A PDF copy of this poster’s abstract can be downloaded from <a href="/assets/PDFs/POETIC_ESMO25.pdf">here</a>. If the view below doesn’t render upon reloading this page, you can also download the poster from <a href="/assets/PDFs/POETIC_ESMO25_export.pdf">here</a>.</p>
+</blockquote>
+
+<iframe src="https://docs.google.com/gview?url=https://raw.githubusercontent.com/fercrcode/fercrcode.github.io/main/assets/PDFs/POETIC_ESMO25_export.pdf&amp;embedded=true" style="width:800px; height:450px; max-width: 100%" frameborder="0"></iframe>]]></content><author><name></name></author><category term="Conference/Event" /><category term="Poster" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Adopting Cloud-Native Technologies for my Server/HomeLab</title><link href="https://fercrcode.github.io/posts/uCoreOS/" rel="alternate" type="text/html" title="Adopting Cloud-Native Technologies for my Server/HomeLab" /><published>2025-03-30T00:00:00+00:00</published><updated>2025-04-06T10:50:51+01:00</updated><id>https://fercrcode.github.io/posts/uCoreOS</id><content type="html" xml:base="https://fercrcode.github.io/posts/uCoreOS/"><![CDATA[<h2 id="intro">Intro</h2>
+
+<p>I have been using cloud native OS for my personal devices (and work ones during my PhD) for several years now; 
+<a href="https://fercrcode.github.io/posts/SilverblueSetup/">first with Fedora Silverblue</a> 
+and lately using the excellent Bluefin and Bazzite images from <a href="https://universal-blue.org/">Universal Blue</a>.</p>
+
+<p>However, due in big part to the dauting prospect of having to set up most of my services and NAS, I have not made the same move for my home server. That is, until now. This post will therefore serve a guide for myself to document this journey and, hopefully, make the eventual next move more palatable. Let’s go!</p>
+
+<h2 id="ucore-os">uCore OS</h2>
+
+<p><a href="https://github.com/ublue-os/ucore?tab=readme-ov-file#ucore">uCore</a> is an opinionated and extended OCI image of Fedora CoreOS.
+As I need my server to also act as a small capacity NAS, I will install the <code class="language-plaintext highlighter-rouge">ucore</code> image with the optional ZFS support.
+My target will therefore be <code class="language-plaintext highlighter-rouge">ucore:stable-zfs</code>.</p>
+
+<h3 id="installation">Installation</h3>
+
+<p>Being based on CoreOS this is somewhat unique in that it usually requires a second machine to generate and “serve” an Ignition file, although here I will be generating the file locally on my server.</p>
+
+<p>The instructions below have been taken from the uCore github and the <a href="https://docs.fedoraproject.org/en-US/fedora-coreos/bare-metal/">CoreOS documentation</a>. This great guide was also used throughout the process: https://discussion.fedoraproject.org/t/beginners-guide-to-fedora-coreos/143037</p>
+
+<ol>
+  <li>https://github.com/ublue-os/ucore/blob/main/examples/ucore-autorebase.butane</li>
+  <li>Settings for butane
+    <ul>
+      <li>password: https://coreos.github.io/butane/examples/#using-password-authentication</li>
+      <li>ssh pub key</li>
+    </ul>
+  </li>
+  <li>Generate Ignition file
+    <ul>
+      <li>https://coreos.github.io/butane/getting-started/</li>
+    </ul>
+  </li>
+  <li>Trigger uCore installation
+    <ul>
+      <li>i.e. <code class="language-plaintext highlighter-rouge">sudo coreos-installer install /dev/nvme0n1 --ignition-url https://example.com/ucore-autorebase.ign</code> (or <code class="language-plaintext highlighter-rouge">--ignition-file /path/to/ucore-autorebase.ign</code>).</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="setup">Setup</h3>
+
+<p>https://github.com/ublue-os/ucore?tab=readme-ov-file#automatically-start-containers-on-boot</p>
+
+<p>https://github.com/ublue-os/ucore?tab=readme-ov-file#default-services</p>
+
+<p>https://github.com/ublue-os/ucore?tab=readme-ov-file#nas—storage</p>
+
+<p>https://github.com/ublue-os/ucore?tab=readme-ov-file#samba</p>
+
+<p>https://github.com/ublue-os/ucore?tab=readme-ov-file#secureboot-w-kmods</p>
+
+<p>https://github.com/ublue-os/ucore?tab=readme-ov-file#zfs</p>]]></content><author><name></name></author><category term="Tech" /><category term="Linux" /><summary type="html"><![CDATA[Intro]]></summary></entry><entry><title type="html">Presenting a Stand at the Turing AI UK 2025 Conference</title><link href="https://fercrcode.github.io/posts/AIUK25/" rel="alternate" type="text/html" title="Presenting a Stand at the Turing AI UK 2025 Conference" /><published>2025-03-17T00:00:00+00:00</published><updated>2025-03-17T00:00:00+00:00</updated><id>https://fercrcode.github.io/posts/AIUK25</id><content type="html" xml:base="https://fercrcode.github.io/posts/AIUK25/"><![CDATA[<p>Draft entry for the Turing AI UK 2025 stand on POETIC-Foundry</p>]]></content><author><name></name></author><category term="Research" /><category term="Conference/Event" /><summary type="html"><![CDATA[Draft entry for the Turing AI UK 2025 stand on POETIC-Foundry]]></summary></entry><entry><title type="html">Building a Platform for Integrative Discovery and Diagnostics in Cancer</title><link href="https://fercrcode.github.io/posts/POPIDD/" rel="alternate" type="text/html" title="Building a Platform for Integrative Discovery and Diagnostics in Cancer" /><published>2025-01-01T00:00:00+00:00</published><updated>2025-01-29T11:33:51+00:00</updated><id>https://fercrcode.github.io/posts/POPIDD</id><content type="html" xml:base="https://fercrcode.github.io/posts/POPIDD/"><![CDATA[<p><img src="/assets/img/EHAA25.png" alt="Window shadow" class="shadow" width="1548" height="864" style="max-width: 90%" /></p>
+
+<p>The aim of this post is to improve the accessibility of the talks given at the 
+<strong><a href="https://www.eventbrite.co.uk/e/2nd-networking-event-empowering-healthcare-with-automated-analysis-tickets-1207054696089?aff=oddtdtcreator">2nd Networking Event: Empowering Healthcare with Automated Analysis</a></strong> 
+by providing with the notes used for the oral presentation.</p>
+
+<blockquote class="prompt-info">
+  <p>A PDF copy of the slides can be downloaded from 
+<a href="/assets/PDFs/20250129_LdnMet.pdf">here</a></p>
+</blockquote>
+
+<h2 id="introduction">Introduction</h2>
+
+<h3 id="presentation">Presentation</h3>
+
+<p>Hello everyone, after Carlos’ wonderful and thought-provoking talk I will try and present within mine and the collected efforts of the Integrated Pathology Unit towards building a platform for Integrative Discovery and Diagnosis in Cancer. 
+My presenter notes and a copy of the slides can be found on the site by scanning this QR code here.</p>
+
+<h3 id="background">Background</h3>
+
+<p>So, to begin with let me talk a bit about myself. I did a bachelor’s in Biotechnology at the University of Barcelona, during the last year of  which I actually came to London to work on my thesis. There I realised two things: first, that London was a wonderful place and that I wanted to stay there, secondly, that I found much more enjoyment analysing the data I was generating in the wet lab. It was then that I decided to pivot towards fully computational roles, doing a master’s in bioinformatics and theoretical systems biology at Imperial and a PhD in computational biology at UCL’s Cancer Institute. During my PhD I worked at Chris Tape’s lab towards understanding colorectal cancer biology and chemotherapy resistance using single-cell omic technologies and organoids as model. I worked on developing and publishing tools for mass cytometry data analysis, published a piece on the phenoscape of colonic stem cell regulation together with Xiao Qin (a former postdoc in Tape Lab that now leads her own lab in Oxford), and worked on exploring the use of knowledge graphs for capturing and interrogating cellular communications.</p>
+
+<h3 id="the-integrated-pathology-unit">The Integrated Pathology Unit</h3>
+
+<p>Now as I introduced earlier, I am part of the Integrated Pathology Unit, together with my colleague Priya and having had the pleasure to host Carlos for his sabbatical from City during 2024. The IPU is actually a very unique setting, nestled in between the research-focused Institute of Cancer Research, and the clinically-focused Royal Marsden Hospital.</p>
+
+<p>At the IPU we work not just with digital pathology images from different modalities, from H&amp;E to IHC and multiplex immunofluorescence, but are also incorporating higher dimensional technologies like Celldive and spatial transcriptomics. All in all, there is a veritable wealth of data passing through the IPU, especially considering that we work with most types of solid tumour cancer, but as many of you here know, massive amounts of data don’t necessarily equate to knowledge. In our particular setting, this challenge is compounded by the need to work with this many data modalities, so are setting out to develop our own analysis platform, POPIDD.</p>
+
+<h2 id="popidd">POPIDD</h2>
+
+<p>POPIDD, or Pathomics Platform for Integrative Discovery and Diagnostics represents our effort towards a solution able to work with not only the imaging modalities I just described, but also the associated clinical data so information can be extracted (including feature extraction and analysis) and integrated (using common data structures), ultimately leading to an increased understanding of clinical and biological processes. This is a growing framework centred around a modular backend (being developed almost exclusively in Python), so that we can consistently reuse in-house tools and also easily incorporate off-the-shelf models. Additionally, the IPU is a wet-lab heavy group, so being very conscious of the need for accessibility in empowering non-computational colleagues, we are also extending on the open source high-dimensional data viewer Napari to build an interface for POPIDD.</p>
+
+<h3 id="backend">Backend</h3>
+
+<p>POPIDDs main pipeline remains unreleased beyond internal use for now, but elements like napari plugins and python packages (that can work either in a standalone way or as part of POPIDD) have already been released. See here popid-io, a napari plugin for reading digital pathology images and annotations as GeoJSONs and parquet files, or pyhscore, a simple package to compute pixel-wise H-scores. Again, as I mentioned earlier, we are focused on building accessible interfaces for these tools, so on the following slides I will show you some use cases of the custom napari interface accessible from POPIDD’s main pipeline.</p>
+
+<h3 id="frontend">Frontend</h3>
+
+<p>This is the interface, with custom widgets on the right. See for example on the upper right the batch loading popid-io widget, loading the shown mIF image, its channel metadata on the left, and adjusting the viewers scale bar. POPIDD’s interface incorporates a series of tabs for the different main components of the tool, we will begin here by talking about the tissue and cell segmentation tab, which uses both in-house and third party models.
+I also wanted to show here how we integrate standalone packages, in this case our own pyhscore package, that can be used to quickly quantify IHC images.
+Finally, there is also a module for aligning TMAs, so their cores can be mapped to the appropriate sample or patient ID before downstream analysis. The widget here uses the Python implementation of this pipeline, but those of you that came to CBIAS might remember how we also talked about a matlab version (perhaps a bit more performant than this one …) developed by Carlos.</p>
+
+<h3 id="application-on-epi700-cohort">Application on Epi700 cohort</h3>
+
+<p>I now wanted to take the last slide of my talk to show a real-life use case of POPIDD in the context of analysing a clinical colorectal cancer cohort. Some of you might find this familiar as it is very similar to the work I presented some months ago at CBIAS. Based on robust signal processing methods, TMAAP identifies the core layout on TMA slides and maps them to their relevant patient and sample IDs. Mapping alignment scores inform the confidence of the ID assignations, which can be visually inspected through a customised interface of the multi-dimensional image viewer napari. We validate TMAAP’s performance by applying it to the Epi700 colorectal cancer cohort, consisting of over 30 thousand individual immunohistochemistry (IHC) and H&amp;E core images. TMAAP can accurately map these images to tumour and stromal samples for each patient. Following downstream IHC quantification, we then recapitulate known clinical and molecular features across all patients; including expected biological interactions between IHC targets and greater degrees of immune involvement in microsatellite instable and BRAF mutant tumours.</p>
+
+<h2 id="closing-remarks">Closing remarks</h2>
+
+<p>Hopefully by now I have shown the idea that, not only is it crucial for us to develop, share, and use great tools advancing our research, but also that we have to be especially mindful of accessibility. Therefore, using graphical interfaces bypasses in my experience one of the main barriers to non-computational colleagues; the dreaded command line interface. I also wanted to take this time to highlight the IPU’s software repository, where myself, Priya and Carlos have been working on these tools and releasing some of them.</p>
+
+<p>Thank you for your time and acknowledge all great people!</p>]]></content><author><name></name></author><category term="Research" /><category term="Conference/Event" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Supplementary Site for our Multimodal Analytical Platform for the Delivery of Integrated Diagnostics in Oncology</title><link href="https://fercrcode.github.io/posts/MultimodalAP4IDD/" rel="alternate" type="text/html" title="Supplementary Site for our Multimodal Analytical Platform for the Delivery of Integrated Diagnostics in Oncology" /><published>2024-12-04T00:00:00+00:00</published><updated>2025-03-28T17:20:49+00:00</updated><id>https://fercrcode.github.io/posts/MultimodalAP4IDD</id><content type="html" xml:base="https://fercrcode.github.io/posts/MultimodalAP4IDD/"><![CDATA[<blockquote class="prompt-info">
+  <p>You can visit the original supplementary website 
+<a href="https://fercrcode.github.io/FoundryPOETICdemo/">here</a></p>
+</blockquote>
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
+    <iframe src="https://fercrcode.github.io/FoundryPOETICdemo/" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" title="Multimodal Analytical Platform Demo">
+    </iframe>
+</div>
+
+<!-- ## Video Demo
+
+<div style="text-align: center;">
+<iframe width="80%" height="120%" src="https://www.youtube.com/embed/sJU1W3sPwY4?si=adUI5_COabkPxG5A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+## Structured Transcript
+
+### POETIC-Foundry
+
+So this is the landing page from the ICR-Foundry accelerator that was done in late 2023. And as you can see, basically, we have here access to certain key applications that we’ll be showcasing in later. And we also have access to some highlighted resources, including the landing page itself, but also the ontology and the filesystem containing all of the all of the data and also outputs from the analysis here within the Foundry platform. And as you can see down here below, we also have highlighted here an overview of the ontology. 
+
+### The Ontology [T-00:42:28]
+
+So this is essentially a graph based representation of the POETIC clinical trial in which we have basically different layers of information. So these different nodes are coloured according to the type of data. They contain the type of resource that they are within this ontology. And within here we can see the inputs. Essentially, we have like all of the clinical information about the patients, but we also have gene expression information from experiments performed here at the ICR and essentially through a series of transforms and analyses here in the Foundry platform, we were then able to essentially could use a series of outputs. These outputs they can be data access themselves. I mean for subsequent analysis or they can also be applications and widgets. such as this one so here we have, for example, some of the applications that we are showing up here on the top we have the image explorer. We also have the clinical trial data and splitting tool, as well as the sample cohorting analysis tool here and a couple of widgets we will also showcase some of them. in this presentation finally as well, this ontology is useful not just to have an overview of the objects that we have, the kind of data that they contain, but also, for example, to, to showcase ability of foundry to to modulate and in a granular manner to control the permissions that a particular user has to look at it and access the different the different types of data. So for example this is viewing the ontology and colouring of the different nodes as my permission. that I have to view these particular types of data as an example what I can also do is that And for example look at this from the point of view of one of one of my colleagues, which she she has access to the data that was produced in our in our group. This is basically like in biological data regarding histopathological samples, for example. But she will not have access to the clinical data. So if we just view these as as her own, for example, then we'll see that if we hover over there and some the current nodes, which for example that she's not able to access patient information, within the ontology, but then she has access to the nodes coloured in blue. So next we would like to show you the three applications that we built using the foundry application. 
+
+### Clinical Trial Data Splitting Tool [T-03:10:28]
+
+So the first application is clinical trial data splitting tool where we use this tool to split certain sub cohorts from POETIC into training, set testing and validation sets. And this is for the ease of future collaboration with external collaborators. So here we we have four modules for this application. So the first module we can just input the data set name and requestor, who this will be shared with and however this tool is only accessible by certain management level. So if here me and Ferran to request and define a cohort today, it won't work. But I can still walk you through each of the module and what we have and what we can do within this module. So the second module is to define the cohort where we can select a certain subgroup of patients based on, you know, different parameters that were included here, such as did they receive peri-operative aromatase inhibitor and what are their baseline breast cancers intrinsic subtypes are they ER-positive / negative or baseline grades, surgery grades. So if we select a certain cohort and then we can then go into the next step, which is sample the cohort, here, we can set the training ratio testing ratio and an evaluation/validation set ratio and then the application will split them based on the ratio, but making sure that the treatment arm and HER2 status is balanced. So it's like a stratified sampling. And once we have this cohort sampled, we can look at the distribution, then we can see whether we like it or not, if we think everything is good and then going to submit for creation where we can submit the cohort and then whoever the cohort was created for or received notification, and then they can then access only certain type of data. So in this case, the clinical data survival data of the patients will not be visible for those people. And here we can also look have a previously defined cohort and the data of the training testing set splits. However, as I mentioned earlier, we don't have access to to this application. So we can’t really see anything here and next I would like to show you the second application, The POETIC sample cohorting and analysis 
+
+### POETIC Sample Cohorting & Analysis [T-06:34:38]
+
+So this application was built mainly for internal use, for our internal analysts and bioinformaticians And so basically we also first select a sub cohort that we are interested in so we can, you know, look at this cohort and then do some either on the fly analysis or some more sophisticated analysis and similar to the previous application, we can select a subset of patients based on different parameters. For example, received peri-operative aromatase inhibitor or not their HER2 status, maybe we want to look at HER2-positive breast cancer patients. And once we have this, we can then go into analysis. And so in the analyses page it will first have two on the fly analyses including class distribution based on different factors that are selected here and also UMAP of gene expressions for the patients that have gene expression data available. And in this section we can also select previously defined cohorts to review to do more analysis and within the selected cohort we can also further filter out patients that have certain type of data, for example in this case imaging data. And for each patient that is shown here, we can also open a patient 360 view where it takes us to a very comprehensive view of the patient, including the different types of object that links to a patient, some of the basic information from patients and here we can we can see this in member states is where that we have to require additional permission to have a view of the survival data of patients and here we can look at the images that's available for this patient, including spatial transcriptomic images. H&E slide and Ki67 staining and here we have this direct comparison for clinicopathological variables of the patient at baseline and on-treatment/surgery. And then we can also look at gene expression data where we can search specific genes, for example, here. ESR1 here we can see that the baseline ESR1 as well as at surgery, you can add more genes. For example, MKI67 and we can see that in the on-treatment surgery Ki67 value downregulated after two weeks treatment. And back here we have two more buttons. One is Run Analysis where we...  it's basically running these two analysis and we can change the parameters inside for example the number of k in K-Means clustering. And another button is to perform additional analysis in R, which takes us to Code Workbook application where you can build a pipeline to run analysis on selected cohorts from the cohorting tool this is an example for that. So we have datasets. And R transformation, and then we plotted some plots. So it's very highly customizable. And yeah for each of the blocks we can have a look at the code that we used and we can also view the plots produced from the code. 
+
+### POETIC ML Image Explorer [T-11:36:38]
+
+And next we will show you the final application we built. It’s the POETIC ML machine learning image review So now this application, which could also be accessed through their patient 360 view that Xixuan showed us earlier and can be used to look at the three different types of imaging modalities that we have within these cohort in Foundry. So the first one of those would be their, fluorescent images from spatial transcriptomics datasets that we have, which is again, a small selection of the whole cohort. And then we also have Ki67 IHC whole slide images as well as Hematoxylin and Eosin stain images as well. So the first of all, these modalities, the one that we currently have in here is, is this a spatial transcriptomics technology which is based on looking at the gene expression profile of regions of interest or ROIs. And the idea here is that for all of the patients for which we have these type of data, these data mortality before and after and after surgery, what we can do is we can explore the actual image itself. We can also look at what the different regions of interests were taken. 
+So this is taken with the aid of the pathologist that actually identifies the zones of interest within the tumour location or invasive boundaries and this kind of high level features. And then we can actually explore explore the different information for each of the different ROIs. So, for example, if we're looking at ROI number number four, and you can actually look in here and you can see that this is like a tumour rich ROI, for example, that has a moderate number of fibroblasts and atypia score of two doesn't really have a lot of lymphocyte infiltrates in this area. And we also have this button here to get the ROI details, which basically would query a whenever a new image is added into the into the Foundry presentation for POETIC it would query and get access to all of these ROI properties in as well as this modality. Again as I mentioned earlier, we also have staining for Ki67, which is a proliferation or cell division marker. And again you can look at all of the patients that have Ki67 stained slides here. We can also look at the actual or the actual like an overview of the actual image itself. You can look at where the tissue is standing for in these kind of modalities. Is this it would appear as a as a brownish colour. What we do is not just have a button to compute the percentage of positively stained Ki67 cells but you can also compare these directly with the data from hotspot analysis. So this is another kind of of technology that also measures expression of Ki67 but is not based on these actual images themselves. So it's kind of like an alternative approach. And then you can still see and compare on that patient patient basis. You can see how the two modalities compare. Basically, the scores for these for this proliferation metrics where we can compare across modalities. And as well as looking at these I'm looking at the images and comparing them visually with the hotspot data. We also have a pipeline in the in the backend that computer pixel-wise H score, which essentially looks at them and classifies pixels based on the possible Ki67 intensity levels, and then also get an aggregate score for each of the each of the slides So these can be compared. And to do that actually we also have another of those workbooks that Xixuan showed earlier with within the sample cohorting analysis tool. Finally the last modality hematoxylin and eosin stained slides in here as you can see basically we have some build-in test annotations with the idea that this modality of the imaging basically is very useful to look at overall tissue tissue morphology. And this actually where we can also talk about the functionality within Foundry to flag and tag images or any kind of other data for particular follow up or for certain actions to be taken to the we take I guess So for example, in here we can just talk about, for example, there are some areas here of course, of this light that have mostly fatty tissue. So annotations can be can be created and you can actually select the area with the fatty tissue we want to see that these area we can save this annotation fatty tissue could even change the colour of the of the of the mark for sample we can change it to yellow we can submit this and then we should see basically that not just for for my particular use of viewing this image, but then for any other user that has permission to look at these images, they will then be able to see my own annotations, see who made them, see when they were made. And any other kind of comments that you might want to add them here. And again, for example, if if an image wasn't for sufficient quality actions could be taken, for example, so for a rescan of the of the image or even like a any other kind of corrective procedure here. And as with the other modalities as well, we have H&E stained images for a considerable number of patients within the POETIC clinical trial. And here, for example, we'll look at one of our case studies, which is 2210B you can see here as well, this, this beautiful, hematoxylin and eosin stained slide We have two sections of tissue with another a third one containing mostly, mostly fatty tissue. And we'll use this one basically to to showcase the other kind of more quantitative analysis that could be performed in foundry. So these are powered essentially by Python transformations and Python python packages is we have developed and implemented, which we can run locally however they are running on the cloud in Foundry so these can be run from any kind of device even a thin and light laptop and for example you can use an intensity based approach to detect the tissue in the image. So basically we'll kind of say what you actually have cellular tissue within these slides and we can also use, for example, a deep learning approach in this case, which is an off the shelf Cellpose model. But again, because the actual backend is written in Python, everything is fully modular and customizable. So when we kind of like in-house, in-house model could be used or an alternative off-the-shelf one, but you also have the ability here. -->]]></content><author><name></name></author><category term="Research" /><category term="Publication" /><summary type="html"><![CDATA[You can visit the original supplementary website here]]></summary></entry><entry><title type="html">Presenting the IDD platform at the EACR Cancer Multiomics conference</title><link href="https://fercrcode.github.io/posts/EACRpposterIDD/" rel="alternate" type="text/html" title="Presenting the IDD platform at the EACR Cancer Multiomics conference" /><published>2024-04-30T01:00:00+01:00</published><updated>2024-12-04T08:57:39+00:00</updated><id>https://fercrcode.github.io/posts/EACRpposterIDD</id><content type="html" xml:base="https://fercrcode.github.io/posts/EACRpposterIDD/"><![CDATA[<p><img src="/assets/img/EACR24_start.jpeg" alt="Desktop View" width="960" height="1280" style="max-width: 200px" class="right" /></p>
+
+<p>This is a stub entry discussing my experience at this year’s <a href="https://eacr.org/conference/cancermultiomics2024/index">EACR Cancer Genomics, Multiomics and Computational Biology conference</a> in Bergamo.</p>
+
+<h2 id="building-a-platform-for-integrative-discovery-and-diagnostics-in-cancer">Building a Platform for Integrative Discovery and Diagnostics in Cancer</h2>
+
+<blockquote class="prompt-info">
+  <p>A PDF copy of this poster’s abstract can be downloaded from <a href="/assets/PDFs/CMCB24_EACR.pdf">here</a>, and cited via <a href="https://doi.org/10.6084/m9.figshare.26414029.v1">DOI: 10.6084/m9.figshare.26414029</a></p>
+</blockquote>
+
+<iframe src="https://docs.google.com/gview?url=https://raw.githubusercontent.com/FerranC96/FerranC96.github.io/main/assets/PDFs/CMCB24poster.pdf&amp;embedded=true" style="width:600px; height:846px; max-width: 100%" frameborder="0"></iframe>]]></content><author><name></name></author><category term="Conference/Event" /><category term="Poster" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">PhD &amp;amp; Thesis</title><link href="https://fercrcode.github.io/posts/PhD/" rel="alternate" type="text/html" title="PhD &amp;amp; Thesis" /><published>2023-10-01T01:00:00+01:00</published><updated>2023-10-01T01:00:00+01:00</updated><id>https://fercrcode.github.io/posts/PhD</id><content type="html" xml:base="https://fercrcode.github.io/posts/PhD/"><![CDATA[]]></content><author><name></name></author><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Graph Signal Processing workshop 2023</title><link href="https://fercrcode.github.io/posts/GSPw23/" rel="alternate" type="text/html" title="Graph Signal Processing workshop 2023" /><published>2023-06-15T01:00:00+01:00</published><updated>2023-08-16T10:05:26+01:00</updated><id>https://fercrcode.github.io/posts/GSPw23</id><content type="html" xml:base="https://fercrcode.github.io/posts/GSPw23/"><![CDATA[<p><img src="/assets/img/GSP23_Aarthi.jpeg" alt="Desktop View" width="960" height="1280" style="max-width: 200px" class="right" /></p>
+
+<p>This is a stub entry discussing my experience at this year’s <a href="http://gspworkshop.org/">Graph Signal Processing workshop</a> in Oxford.</p>
+
+<p>I attended together with collaborators Aarthi Venkat and Prof. Smita Krishnaswamy, where we brought work on learning embeddings of directed gene-gene networks.
+Aarthi presented the work as an amazing talk during the second day!
+And of course, we also had lots of fun; including a formal dinner at an Oxford’s college and a <em>posh</em> afternoon tea!</p>
+
+<p><img src="/assets/img/GSP23_drinks.jpeg" alt="Window shadow" class="shadow" width="800" height="600" style="max-width: 90%" /></p>
+
+<h2 id="learning-directed-and-hyperbolic-gene-embeddings">Learning directed and hyperbolic gene embeddings</h2>
+
+<blockquote class="prompt-info">
+  <p>A PDF copy of this paper can be downloaded from 
+<a href="/assets/PDFs/GSPworkshop23.pdf">here</a></p>
+</blockquote>
+
+<iframe src="https://docs.google.com/gview?url=https://raw.githubusercontent.com/FerranC96/FerranC96.github.io/main/assets/PDFs/GSPworkshop23.pdf&amp;embedded=true" style="width:600px; height:846px; max-width: 100%" frameborder="0"></iframe>]]></content><author><name></name></author><category term="Conference/Event" /><category term="Collaboration" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Big -omic Data and GPU acceleration with CUDA</title><link href="https://fercrcode.github.io/posts/SilverblueBigDataCUDA/" rel="alternate" type="text/html" title="Big -omic Data and GPU acceleration with CUDA" /><published>2023-05-15T01:00:00+01:00</published><updated>2023-06-10T09:26:45+01:00</updated><id>https://fercrcode.github.io/posts/SilverblueBigDataCUDA</id><content type="html" xml:base="https://fercrcode.github.io/posts/SilverblueBigDataCUDA/"><![CDATA[<p>As part of the peer-review process of Cardoso Rodriguez &amp; Qin et al. 2023, we decided to compare our murine organoid data with publicly available patient cohorts of Colorectal Cancer. While some of the workflows were suited for the HPC, dataset exploration benefits from the agility of local compute. 
+Now, with Variational AutoEncoder approaches for data integration implemented in PyTorch, my laptop’s GPU was more than adequate for this.</p>
+
+<h3 id="utilizing-cuda-for--omic-data-integration">Utilizing CUDA for -omic Data Integration</h3>
+
+<p>To integrate single-cell (sc) -omic public data, methods such as Canonical Correlation Analysis (CCA) or Robust Principal Component Analysis (rPCA) can be employed. State-of-the-art techniques based on Variational Autoencoders (VAEs) can benefit significantly from GPU acceleration provided by CUDA. However, CUDA requires the installation of the proprietary NVIDIA driver, which might not be straightforward in Silverblue due to the unique characteristics of rpm-ostree. If using PyTorch and JAX from a Conda environment, care must be taken to ensure both frameworks can access the CUDA installation.</p>
+
+<h4 id="installing-the-nvidia-driver">Installing the NVIDIA Driver</h4>
+
+<p>To install the NVIDIA driver, follow the instructions provided by RPM Fusion: https://rpmfusion.org/Howto/NVIDIA#OSTree_.28Silverblue.2FKinoite.2Fetc.29. On Silverblue, a hack is required to load the proprietary NVIDIA driver. In some cases, it may be necessary to lower the secure boot settings or disable it completely. Additional information can be found in the following GitHub repository: https://github.com/CheariX/silverblue-akmods-keys.</p>
+
+<h4 id="setting-up-scvi-tools-with-cuda-on-linux">Setting up scvi-tools with CUDA on Linux</h4>
+
+<p>When installing scvi-tools through Conda, JAX cannot utilize CUDA unless you also install cuda-nvcc. Run the following command after installing PyTorch, CUDA, and other dependencies through Conda:</p>
+
+<p><code class="language-plaintext highlighter-rouge">conda install jax cuda-nvcc -c conda-forge -c nvidia</code></p>
+
+<p>Next, install scvi-tools, Scanpy, and scikit-misc:</p>
+
+<p><code class="language-plaintext highlighter-rouge">conda install scvi-tools scanpy scikit-misc -c conda-forge</code></p>
+
+<p>If encountering issues, you can try creating a new empty environment and installing the necessary packages using mamba:</p>
+
+<p><code class="language-plaintext highlighter-rouge">mamba create -n myenv python=3.9</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">conda activate myenv</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">mamba install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">mamba install jaxlib jax cuda-nvcc -c conda-forge -c nvidia</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">conda install scvi-tools scanpy scikit-misc -c conda-forge</code></p>
+
+<h3 id="increasing-swap-for-big-crc-datasets">Increasing Swap for Big CRC Datasets</h3>
+
+<p>To handle large CRC datasets effectively, increasing the swap size is crucial. Long time usage (abuse really) will murder your disk longevity, but it does sure come convenient in a pinch!</p>
+
+<p>Use the following command to create a 64GB swap file:</p>
+
+<p><code class="language-plaintext highlighter-rouge">btrfs filesystem mkswapfile --size 64G $swapfile</code></p>
+
+<p>Activate the swap file with the following command:</p>
+
+<p><code class="language-plaintext highlighter-rouge">sudo swapon $swapfile</code></p>
+
+<p>This can be automatically activated at boot too, but I only use it when working with Big Data locally.</p>]]></content><author><name></name></author><category term="Research" /><category term="Linux" /><summary type="html"><![CDATA[As part of the peer-review process of Cardoso Rodriguez &amp; Qin et al. 2023, we decided to compare our murine organoid data with publicly available patient cohorts of Colorectal Cancer. While some of the workflows were suited for the HPC, dataset exploration benefits from the agility of local compute. Now, with Variational AutoEncoder approaches for data integration implemented in PyTorch, my laptop’s GPU was more than adequate for this.]]></summary></entry><entry><title type="html">Oxford Nanopore and their EPI2ME nextflow pipelines</title><link href="https://fercrcode.github.io/posts/NanoporeNextflow/" rel="alternate" type="text/html" title="Oxford Nanopore and their EPI2ME nextflow pipelines" /><published>2023-05-01T01:00:00+01:00</published><updated>2023-06-15T11:55:32+01:00</updated><id>https://fercrcode.github.io/posts/NanoporeNextflow</id><content type="html" xml:base="https://fercrcode.github.io/posts/NanoporeNextflow/"><![CDATA[<p>This is a stub entry for some of my work helping a collaborator sequence and run some Oxford Nanopore data.</p>
+
+<p>The entry will include work troubleshooting a MinION Mk1C device, and exploring the nextflow-based EPI2ME pipelines provided by Oxford Nanopore (specifically in the context of running them in Docker, Podman and singularity containers).</p>]]></content><author><name></name></author><category term="Research" /><category term="Collaboration" /><summary type="html"><![CDATA[This is a stub entry for some of my work helping a collaborator sequence and run some Oxford Nanopore data.]]></summary></entry></feed>
